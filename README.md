@@ -5,13 +5,22 @@ An end-to-end automated HR onboarding pipeline built using **Make.com**, **Webho
 ---
 
 ## 📸 System Architecture & Overview
+[ Incoming Webhook (JSON) ]
+│
+▼
+[ Google Sheets Control Tower ] ──► (SLA Calculations & Process Health)
+│
+▼
+[ Gmail API Dispatcher ] ─────────► (Automated Candidate Onboarding Email)
+
+
 ---
 
 ## 🚀 Features & Capabilities
 
 * **Automated Data Ingestion:** Captures incoming candidate payloads dynamically via a custom webhook endpoint.
 * **Master Database Integration:** Automatically maps candidate metadata (`Name`, `Department`, `Start Date`, `Email`) to the `Onboarding_Database` tracker.
-* **Automated SLA & Health Tracking:** Integrates with sheet formulas (`WORKDAY`, `NETWORKDAYS`) to calculate IT provisioning timelines and flagging overall process health (🟢 On Track, 🟡 At Risk, 🔴 Critical).
+* **Automated SLA & Health Tracking:** Integrates with sheet formulas (`WORKDAY`, `NETWORKDAYS`) to calculate IT provisioning timelines and flag overall process health (🟢 On Track, 🟡 At Risk, 🔴 Critical).
 * **Conditional Communication Dispatch:** Triggers welcome emails via Gmail API based on record criteria.
 
 ---
@@ -53,3 +62,15 @@ Below is the structured JSON format passed to the Make.com webhook:
     }
   ]
 }
+🔧 Setup & Deployment Instructions
+Database Preparation: Upload the Onboarding_Master_Tracker.xlsx template to Google Drive and open as a Google Sheet.
+
+Make.com Configuration:
+
+Create a scenario with a Custom Webhook module.
+
+Add a Google Sheets (Add a Row) module connected to Onboarding_Database.
+
+Add a Gmail (Send an Email) module with re-authenticated OAuth 2.0 scopes.
+
+Trigger Execution: Activate the scenario toggle to listen for live incoming requests.
