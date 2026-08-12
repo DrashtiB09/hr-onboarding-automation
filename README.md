@@ -62,15 +62,17 @@ Below is the structured JSON format passed to the Make.com webhook:
     }
   ]
 }
-🔧 Setup & Deployment Instructions
-Database Preparation: Upload the Onboarding_Master_Tracker.xlsx template to Google Drive and open as a Google Sheet.
+```
 
-Make.com Configuration:
+## 🔧 Setup & Deployment Instructions
+* Database Preparation: Upload the Onboarding_Master_Tracker.xlsx template to Google Drive and open as a Google Sheet.
+
+* Make.com Configuration: https://us2.make.com/public/shared-scenario/rbJrGhnleb7/integration-webhooks-google-sheets-gma
 
 Create a scenario with a Custom Webhook module.
 
-Add a Google Sheets (Add a Row) module connected to Onboarding_Database.
+   * Add a Google Sheets (Add a Row) module connected to Onboarding_Database.
 
-Add a Gmail (Send an Email) module with re-authenticated OAuth 2.0 scopes.
+   * Add a Gmail (Send an Email) module with re-authenticated OAuth 2.0 scopes.
 
-Trigger Execution: Activate the scenario toggle to listen for live incoming requests.
+   * Trigger Execution: Activate the scenario toggle to listen for live incoming requests.
